@@ -4,7 +4,7 @@ Imports OpenQA.Selenium
 Public Class DynamicTablePage
     Private ReadOnly driver As IWebDriver
     Private ReadOnly pageElements As New Dictionary(Of String, String) From {
-        {"columnSuperHero", "//th[normalize-space(text())='Superhero']"},
+        {"columnName", "//th[normalize-space(text())='{columnName}']"},
         {"columnStatus", "//th[normalize-space(text())='Status']"},
         {"columnRealName", "//th[normalize-space(text())='Real Name']"},
         {"superHeroName", "//div[text()='{superHeroName}']"},
@@ -41,19 +41,10 @@ Public Class DynamicTablePage
         Assert.IsTrue(isSuperHeroRealNameVisible, $"{superHeroRealName} is not visible.")
     End Sub
 
-    Public Sub VerifySuperColumnVisible()
-        Dim isSuperColumnVisible As Boolean = driver.FindElements(By.XPath(pageElements("columnSuperHero"))).Count <> 0
-        Assert.IsTrue(isSuperColumnVisible, "columnSuperHero is not visible.")
-    End Sub
-
-    Public Sub VerifyStatusColumnVisible()
-        Dim isStatusColumnVisible As Boolean = driver.FindElements(By.XPath(pageElements("columnStatus"))).Count <> 0
-        Assert.IsTrue(isStatusColumnVisible, "columnStatus is not visible.")
-    End Sub
-
-    Public Sub VerifyRealNameColumnVisible()
-        Dim isRealNameColumnVisible As Boolean = driver.FindElements(By.XPath(pageElements("columnRealName"))).Count <> 0
-        Assert.IsTrue(isRealNameColumnVisible, "columnRealName is not visible.")
+    Public Sub VerifyColumnVisible(column As String)
+        Dim columnName = pageElements("columnName").Replace("{columnName}", column)
+        Dim isSuperColumnVisible As Boolean = driver.FindElements(By.XPath(columnName)).Count <> 0
+        Assert.IsTrue(isSuperColumnVisible, $"{columnName} is not visible.")
     End Sub
 
 End Class

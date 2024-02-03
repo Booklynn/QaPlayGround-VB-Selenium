@@ -35,10 +35,11 @@ Namespace QaPlayGround
         End Sub
 
         <TestMethod>
-        Sub VerifyAllColumns_DisplayedCorrectly()
-            dynamicTablePage.VerifySuperColumnVisible()
-            dynamicTablePage.VerifyStatusColumnVisible()
-            dynamicTablePage.VerifyRealNameColumnVisible()
+        <DataRow("Superhero")>
+        <DataRow("Status")>
+        <DataRow("Real Name")>
+        Sub VerifyAllColumns_DisplayedCorrectly(column As String)
+            dynamicTablePage.VerifyColumnVisible(column)
         End Sub
 
     End Class
