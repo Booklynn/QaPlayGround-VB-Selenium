@@ -5,7 +5,7 @@ Namespace QaPlayGround
     Public Class VerifyAccount
         Private ReadOnly common As Common
         Private ReadOnly verifyAccountPage As VerifyAccountPage
-        ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROSWER"), "Chrome")
+        ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "Chrome")
 
         Public Sub New()
             common = New Common(browserName)
@@ -28,7 +28,6 @@ Namespace QaPlayGround
             verifyAccountPage.InputConfirmationCode(code)
             verifyAccountPage.VerifySuccessTextVisible()
         End Sub
-
 
         <TestMethod>
         Sub VerifyAccount_NotSuccess()

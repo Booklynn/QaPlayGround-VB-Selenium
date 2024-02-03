@@ -5,7 +5,7 @@ Namespace QaPlayGround
     Public Class DynamicTable
         Private ReadOnly common As Common
         Private ReadOnly dynamicTablePage As DynamicTablePage
-        ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROSWER"), "Chrome")
+        ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "Chrome")
 
         Public Sub New()
             common = New Common(browserName)
