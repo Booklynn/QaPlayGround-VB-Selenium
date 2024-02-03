@@ -14,6 +14,13 @@ Public Class Common
                 chromeOptions.AddArgument("--ignore-certificate-errors")
                 chromeOptions.AddArgument("--disable-extensions")
                 driver = New ChromeDriver(chromeOptions)
+            Case "ChromeHeadless"
+                Dim chromeOptions As New ChromeOptions()
+                chromeOptions.AddArgument("--disable-gpu")
+                chromeOptions.AddArgument("--headless")
+                chromeOptions.AddArgument("--ignore-certificate-errors")
+                chromeOptions.AddArgument("--disable-extensions")
+                driver = New ChromeDriver(chromeOptions)
             Case "Firefox"
                 driver = New FirefoxDriver()
             Case Else
