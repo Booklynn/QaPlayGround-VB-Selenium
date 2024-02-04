@@ -22,15 +22,28 @@ Namespace QaPlayGround
         End Sub
 
         <TestMethod>
-        Sub VerifyAccount_Success()
+        Sub VerifyAccount_TypingNumber_Success()
             Dim code = verifyAccountPage.GetConfirmationCode()
             verifyAccountPage.InputConfirmationCode(code)
             verifyAccountPage.VerifySuccessTextVisible()
         End Sub
 
         <TestMethod>
-        Sub VerifyAccount_NotSuccess()
+        Sub VerifyAccount_PressingKeyUp_Success()
+            Dim code = verifyAccountPage.GetConfirmationCode()
+            verifyAccountPage.PressKeyUpOnConfirmationCodeInput(code)
+            verifyAccountPage.VerifySuccessTextVisible()
+        End Sub
+
+        <TestMethod>
+        Sub VerifyAccount_TypingNumber_NotSuccess()
             verifyAccountPage.InputConfirmationCode("123456")
+            verifyAccountPage.VerifySuccessTextNotVisible()
+        End Sub
+
+        <TestMethod>
+        Sub VerifyAccount_PressingKeyUp_NotSuccess()
+            verifyAccountPage.PressKeyUpOnConfirmationCodeInput("999990")
             verifyAccountPage.VerifySuccessTextNotVisible()
         End Sub
 
