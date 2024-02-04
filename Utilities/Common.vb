@@ -6,23 +6,23 @@ Public Class Common
     Implements IDisposable
 
     Private ReadOnly driver As IWebDriver
-    ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "Chrome")
+    ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "chrome")
 
     Public Sub New()
         Select Case browserName.ToLower()
-            Case "Chrome".ToLower()
+            Case "chrome"
                 Dim chromeOptions As New ChromeOptions()
                 chromeOptions.AddArgument("--ignore-certificate-errors")
                 chromeOptions.AddArgument("--disable-extensions")
                 driver = New ChromeDriver(chromeOptions)
-            Case "ChromeHeadless".ToLower()
+            Case "chromeheadless"
                 Dim chromeOptions As New ChromeOptions()
                 chromeOptions.AddArgument("--disable-gpu")
                 chromeOptions.AddArgument("--headless")
                 chromeOptions.AddArgument("--ignore-certificate-errors")
                 chromeOptions.AddArgument("--disable-extensions")
                 driver = New ChromeDriver(chromeOptions)
-            Case "Firefox".ToLower()
+            Case "firefox"
                 driver = New FirefoxDriver()
             Case Else
                 Throw New ArgumentException("Invalid browser specified.")
