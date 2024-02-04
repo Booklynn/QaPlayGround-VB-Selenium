@@ -43,13 +43,13 @@ Public Class VerifyAccountPage
     End Sub
 
     Public Sub VerifySuccessTextVisible()
-        Dim isSuccessTextVisible As Boolean = driver.FindElements(By.CssSelector(pageElements("successText"))).Count <> 0
+        Dim isSuccessTextVisible As Boolean = driver.FindElement(By.CssSelector(pageElements("successText"))).Displayed
         Assert.IsTrue(isSuccessTextVisible, "successText is not visible.")
     End Sub
 
     Public Sub VerifySuccessTextNotVisible()
-        Dim isSuccessTextVisible As Boolean = driver.FindElements(By.CssSelector(pageElements("successText"))).Count <> 0
-        Assert.IsFalse(isSuccessTextVisible, "successText is still visible.")
+        Dim isSuccessTextNotVisible As Boolean = driver.FindElements(By.CssSelector(pageElements("successText"))).Count = 0
+        Assert.IsTrue(isSuccessTextNotVisible, "successText is still visible.")
     End Sub
 
 End Class
