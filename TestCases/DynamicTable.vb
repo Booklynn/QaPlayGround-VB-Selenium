@@ -23,12 +23,19 @@ Namespace QaPlayGround
         End Sub
 
         <TestMethod>
+        <DataRow("Peter Parker")>
+        <DataRow("Robert Bruce Banner")>
+        Sub VerifySuperHero_RealName(realName As String)
+            dynamicTablePage.VerifySuperHeroRealNameAtTheThirdColumn(realName)
+        End Sub
+
+        <TestMethod>
         <DataRow("Spider-Man", "spiderman.jpg", "spider-man@avengers.com", "Peter Parker")>
         <DataRow("Doctor Strange", "doctor-strange.jpg", "doctor-strange@avengers.com", "Stephen Vincent Strange")>
         <DataRow("Black Widow", "black-widow.jpg", "black-widow@avengers.com", "Natasha Alianovna Romanova")>
         <DataRow("Deadpool", "deadpool.jpg", "deadpool@avengers.com", "Wade Wilson")>
         <DataRow("Captain America", "captain-america.jpg", "captain-america@avengers.com", "Steve Rogers")>
-        Sub VerifySuperHeroesInformation_DisplayedCorrectly(name As String, imageName As String, email As String, realName As String)
+        Sub VerifySuperHeroeInformation_DisplayedCorrectly(name As String, imageName As String, email As String, realName As String)
             dynamicTablePage.VerifySuperHeroNameVisible(name)
             dynamicTablePage.VerifySuperHeroImageVisible(imageName)
             dynamicTablePage.VerifySuperHeroEmailVisible(email)
@@ -39,7 +46,7 @@ Namespace QaPlayGround
         <DataRow("Superhero")>
         <DataRow("Status")>
         <DataRow("Real Name")>
-        Sub VerifyAllColumns_DisplayedCorrectly(column As String)
+        Sub VerifyColumn_DisplayedCorrectly(column As String)
             dynamicTablePage.VerifyColumnVisible(column)
         End Sub
 

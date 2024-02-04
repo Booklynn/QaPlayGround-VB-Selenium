@@ -10,11 +10,20 @@ Public Class DynamicTablePage
         {"superHeroName", "//div[text()='{superHeroName}']"},
         {"superHeroImage", "img[src='./img/{superHeroImage}']"},
         {"superHeroEmail", "//div[text()='{superHeroEmail}']"},
-        {"superHeroRealName", "//span[text()='{superHeroRealName}']"}
+        {"superHeroRealName", "//span[text()='{superHeroRealName}']"},
+        {"rowSuperHero", "//*[text()='{superHeroRealName}']/../.."},
+        {"realNameCell", "./td[3]"}
     }
 
     Public Sub New(driver As IWebDriver)
         Me.driver = driver
+    End Sub
+
+    Public Sub VerifySuperHeroRealNameAtTheThirdColumn(realName As String)
+        Dim superHeroRealName = pageElements("rowSuperHero").Replace("{superHeroRealName}", realName)
+        Dim row As WebElement = driver.FindElement(By.XPath(superHeroRealName))
+        Dim realNameCell = row.FindElement(By.XPath(pageElements("realNameCell")))
+        Assert.AreEqual(realName, realNameCell.Text, $"{realName} is not visible.")
     End Sub
 
     Public Sub VerifySuperHeroNameVisible(name As String)
