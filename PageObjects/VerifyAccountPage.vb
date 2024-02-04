@@ -31,6 +31,19 @@ Public Class VerifyAccountPage
         Next
     End Sub
 
+    Public Sub PressKeyUpOnConfirmationCodeInput(code As String)
+        Dim codes As String() = code.ToCharArray().Select(Function(c) c.ToString()).ToArray()
+        Dim codeLength As Integer = codes.Length
+        Dim confirmationInputTemplate As String = pageElements("confirmationInputs")
+
+        For i As Integer = 0 To codeLength - 1
+            Dim confirmationInput = confirmationInputTemplate.Replace("{index}", (i + 1).ToString())
+            For j As Integer = 0 To codes(i) - 1
+                driver.FindElement(By.XPath(confirmationInput)).SendKeys(Keys.ArrowUp)
+            Next
+        Next
+    End Sub
+
     Public Sub VerifySuccessTextVisible()
         Dim isSuccessTextVisible As Boolean = driver.FindElements(By.CssSelector(pageElements("successText"))).Count <> 0
         Assert.IsTrue(isSuccessTextVisible, "successText is not visible.")
