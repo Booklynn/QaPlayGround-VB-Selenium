@@ -10,19 +10,19 @@ Public Class Common
 
     Public Sub New()
         Select Case browserName
-            Case "Chrome"
+            Case "Chrome".ToLower()
                 Dim chromeOptions As New ChromeOptions()
                 chromeOptions.AddArgument("--ignore-certificate-errors")
                 chromeOptions.AddArgument("--disable-extensions")
                 driver = New ChromeDriver(chromeOptions)
-            Case "ChromeHeadless"
+            Case "ChromeHeadless".ToLower()
                 Dim chromeOptions As New ChromeOptions()
                 chromeOptions.AddArgument("--disable-gpu")
                 chromeOptions.AddArgument("--headless")
                 chromeOptions.AddArgument("--ignore-certificate-errors")
                 chromeOptions.AddArgument("--disable-extensions")
                 driver = New ChromeDriver(chromeOptions)
-            Case "Firefox"
+            Case "Firefox".ToLower()
                 driver = New FirefoxDriver()
             Case Else
                 Throw New ArgumentException("Invalid browser specified.")
