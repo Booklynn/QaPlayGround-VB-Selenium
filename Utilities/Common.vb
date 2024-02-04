@@ -9,7 +9,7 @@ Public Class Common
     ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "Chrome")
 
     Public Sub New()
-        Select Case browserName
+        Select Case browserName.ToLower()
             Case "Chrome".ToLower()
                 Dim chromeOptions As New ChromeOptions()
                 chromeOptions.AddArgument("--ignore-certificate-errors")
