@@ -5,10 +5,9 @@ Namespace QaPlayGround
     Public Class VerifyAccount
         Private ReadOnly common As Common
         Private ReadOnly verifyAccountPage As VerifyAccountPage
-        ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "Chrome")
 
         Public Sub New()
-            common = New Common(browserName)
+            common = New Common()
             verifyAccountPage = New VerifyAccountPage(common.GetDriver())
         End Sub
 

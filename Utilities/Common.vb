@@ -6,9 +6,10 @@ Public Class Common
     Implements IDisposable
 
     Private ReadOnly driver As IWebDriver
+    ReadOnly browserName As String = If(Environment.GetEnvironmentVariable("BROWSER"), "Chrome")
 
-    Public Sub New(Optional browser As String = "Chrome")
-        Select Case browser
+    Public Sub New()
+        Select Case browserName
             Case "Chrome"
                 Dim chromeOptions As New ChromeOptions()
                 chromeOptions.AddArgument("--ignore-certificate-errors")
