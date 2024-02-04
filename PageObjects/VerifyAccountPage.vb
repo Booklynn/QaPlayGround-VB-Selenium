@@ -6,7 +6,7 @@ Public Class VerifyAccountPage
     Private ReadOnly driver As IWebDriver
     Private ReadOnly pageElements As New Dictionary(Of String, String) From {
         {"confirmationCodeInfo", "//small[@class='info']"},
-        {"confirmationInputs", "(//input[@type='number'])[{index}]"},
+        {"confirmationInputs", "code"},
         {"successText", ".info.success"}
     }
 
@@ -23,23 +23,21 @@ Public Class VerifyAccountPage
     Public Sub InputConfirmationCode(code As String)
         Dim codes As String() = code.ToCharArray().Select(Function(c) c.ToString()).ToArray()
         Dim codeLength As Integer = codes.Length
-        Dim confirmationInputTemplate As String = pageElements("confirmationInputs")
+        Dim inputCodeFields = driver.FindElements(By.ClassName(pageElements("confirmationInputs")))
 
         For i As Integer = 0 To codeLength - 1
-            Dim confirmationInput = confirmationInputTemplate.Replace("{index}", (i + 1).ToString())
-            driver.FindElement(By.XPath(confirmationInput)).SendKeys(codes(i))
+            inputCodeFields.ElementAt(i).SendKeys(codes(i))
         Next
     End Sub
 
     Public Sub PressKeyUpOnConfirmationCodeInput(code As String)
         Dim codes As String() = code.ToCharArray().Select(Function(c) c.ToString()).ToArray()
         Dim codeLength As Integer = codes.Length
-        Dim confirmationInputTemplate As String = pageElements("confirmationInputs")
+        Dim inputCodeFields = driver.FindElements(By.ClassName(pageElements("confirmationInputs")))
 
         For i As Integer = 0 To codeLength - 1
-            Dim confirmationInput = confirmationInputTemplate.Replace("{index}", (i + 1).ToString())
             For j As Integer = 0 To codes(i) - 1
-                driver.FindElement(By.XPath(confirmationInput)).SendKeys(Keys.ArrowUp)
+                inputCodeFields.ElementAt(i).SendKeys(Keys.ArrowUp)
             Next
         Next
     End Sub
